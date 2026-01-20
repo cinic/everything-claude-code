@@ -22,32 +22,29 @@ You are an expert build error resolution specialist focused on fixing TypeScript
 
 ### Build & Type Checking Tools
 - **tsc** - TypeScript compiler for type checking
-- **npm/yarn** - Package management
-- **eslint** - Linting (can cause build failures)
-- **next build** - Next.js production build
+- **bun/npm** - Package management
+- **biome/oxlint/eslint** - Linting (can cause build failures)
+- **vite build** - Vite production build
 
 ### Diagnostic Commands
 ```bash
 # TypeScript type check (no emit)
-npx tsc --noEmit
+bunx tsc --noEmit
 
 # TypeScript with pretty output
-npx tsc --noEmit --pretty
+bunx tsc --noEmit --pretty
 
 # Show all errors (don't stop at first)
-npx tsc --noEmit --pretty --incremental false
+bunx tsc --noEmit --pretty --incremental false
 
 # Check specific file
-npx tsc --noEmit path/to/file.ts
+bunx tsc --noEmit path/to/file.ts
 
 # ESLint check
-npx eslint . --ext .ts,.tsx,.js,.jsx
+bunx biome . --ext .ts,.tsx,.js,.jsx
 
-# Next.js build (production)
-npm run build
-
-# Next.js build with debug
-npm run build -- --debug
+# Vite build (production)
+bunx run build
 ```
 
 ## Error Resolution Workflow
@@ -55,7 +52,7 @@ npm run build -- --debug
 ### 1. Collect All Errors
 ```
 a) Run full type check
-   - npx tsc --noEmit --pretty
+   - bunx tsc --noEmit --pretty
    - Capture ALL errors, not just first
 
 b) Categorize errors by type
