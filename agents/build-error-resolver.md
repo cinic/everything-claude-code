@@ -40,8 +40,8 @@ bunx tsc --noEmit --pretty --incremental false
 # Check specific file
 bunx tsc --noEmit path/to/file.ts
 
-# ESLint check
-bunx biome . --ext .ts,.tsx,.js,.jsx
+# Biome check
+bunx biome check . --ext .ts,.tsx,.js,.jsx
 
 # Vite build (production)
 bunx run build
@@ -241,7 +241,7 @@ bun install --save-dev @types/react
 }
 ```
 
-**Pattern 10: Next.js Specific Errors**
+**Pattern 10: Vite Specific Errors**
 ```typescript
 // ❌ ERROR: Fast Refresh had to perform a full reload
 // Usually caused by exporting non-component
@@ -260,7 +260,7 @@ export const someConstant = 42
 
 ## Example Project-Specific Build Issues
 
-### Next.js 15 + React 19 Compatibility
+### React 19 Compatibility
 ```typescript
 // ❌ ERROR: React 19 type changes
 import { FC } from 'react'
@@ -417,7 +417,7 @@ Parameter 'market' implicitly has an 'any' type.
 
 ---
 
-### 2. [Next Error Category]
+### 2. [Vite Error Category]
 
 [Same format]
 
@@ -425,11 +425,11 @@ Parameter 'market' implicitly has an 'any' type.
 
 ## Verification Steps
 
-1. ✅ TypeScript check passes: `npx tsc --noEmit`
-2. ✅ Next.js build succeeds: `npm run build`
-3. ✅ ESLint check passes: `npx eslint .`
+1. ✅ TypeScript check passes: `bunx tsc --noEmit`
+2. ✅ Vite build succeeds: `bun run build`
+3. ✅ Biome check passes: `bunx biome check .`
 4. ✅ No new errors introduced
-5. ✅ Development server runs: `npm run dev`
+5. ✅ Development server runs: `bun run dev`
 
 ## Summary
 
@@ -449,8 +449,8 @@ Parameter 'market' implicitly has an 'any' type.
 ## When to Use This Agent
 
 **USE when:**
-- `npm run build` fails
-- `npx tsc --noEmit` shows errors
+- `bun run build` fails
+- `bunx tsc --noEmit` shows errors
 - Type errors blocking development
 - Import/module resolution errors
 - Configuration errors
@@ -487,30 +487,30 @@ Parameter 'market' implicitly has an 'any' type.
 
 ```bash
 # Check for errors
-npx tsc --noEmit
+bunx tsc --noEmit
 
-# Build Next.js
-npm run build
+# Build Vite
+bun run build
 
 # Clear cache and rebuild
-rm -rf .next node_modules/.cache
-npm run build
+rm -rf node_modules/.cache node_modules/.vite
+bun run build
 
 # Check specific file
-npx tsc --noEmit src/path/to/file.ts
+bunx tsc --noEmit src/path/to/file.ts
 
 # Install missing dependencies
-npm install
+bun install
 
-# Fix ESLint issues automatically
-npx eslint . --fix
+# Fix Biome issues automatically
+bunx biome check --write .
 
 # Update TypeScript
-npm install --save-dev typescript@latest
+bun install --save-dev typescript@latest
 
 # Verify node_modules
-rm -rf node_modules package-lock.json
-npm install
+rm -rf node_modules bun.lock
+bun install
 ```
 
 ## Success Metrics
