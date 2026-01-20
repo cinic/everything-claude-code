@@ -115,7 +115,7 @@ function add(x: number, y: number): number {
 const name = user.name.toUpperCase()
 
 // ✅ FIX: Optional chaining
-const name = user?.name?.toUpperCase()
+const name = user?.name?.toUpperCase() || ''
 
 // ✅ OR: Null check
 const name = user && user.name ? user.name.toUpperCase() : ''
@@ -154,7 +154,7 @@ import { formatDate } from '@/lib/utils'
 import { formatDate } from '../lib/utils'
 
 // ✅ FIX 3: Install missing package
-npm install @/lib/utils
+bun install @/lib/utils
 ```
 
 **Pattern 5: Type Mismatch**
@@ -227,8 +227,8 @@ async function fetchData() {
 import React from 'react'
 
 // ✅ FIX: Install dependencies
-npm install react
-npm install --save-dev @types/react
+bun install react
+bun install --save-dev @types/react
 
 // ✅ CHECK: Verify package.json has dependency
 {
